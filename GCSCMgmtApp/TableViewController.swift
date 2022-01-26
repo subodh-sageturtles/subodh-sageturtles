@@ -18,7 +18,8 @@ class TableViewController: UITableViewController {
     //var items = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-       // items = [,"Todays Tasks","Projects"]
+       // ToDo: Hardcoded string needs to be replaced with data detched from database, each array element is a row, each string the array element is a field in some table, and each line is a row. Each celldata is different set of data from a different query.
+        
         tableViewData = [cellData(opened: false, title: "Upcoming Deadlines", sectionData:["Amit Varde " + "install power outlet" + " " + "01-29-2022" + " " + "Sunnyvale CA " , "Subodh Kumar" + " " + "install projector" + " " + "01-27-2022" + " " + "Austin TX"]),
         cellData(opened: false, title: "Todays Tasks", sectionData: ["Kenneth Chang" + " " + "install sink" + " " + "TodaysDate" + " " + "Sunnyvale CA "]),
         cellData(opened: false, title: "Projects", sectionData: ["Amit Varde  " + " " + "install dishwasher" + " " + "02-05-2022" + " " + "Sunnyvale CA "
