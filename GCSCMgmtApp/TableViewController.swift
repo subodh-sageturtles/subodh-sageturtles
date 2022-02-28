@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SQLite3
 
 struct cellData {
     var opened = Bool()
@@ -13,17 +14,88 @@ struct cellData {
     var sectionData = [String]()
 }
 
+func openDatabase() -> OpaquePointer? {
+    do {var db: OpaquePointer?
+    let manager = FileManager.default
+        let testDbPath = try manager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create:false).appendingPathComponent("test.db")
+    if sqlite3_open(testDbPath.path, &db) == SQLITE_OK {
+        print(" Successfully opened connection to database at \(testDbPath)")
+        return db
+    } else {
+        print("Unable to open database.")
+        return nil
+    }
+        //return nil
+    } catch {
+        print(error)
+        return nil
+    }
+    
+}
+
+func queryDeadline(in db:OpaquePointer, in queryStatementString:String) ->  Array<String>{
+    var arr:[String] = ["MainContractID || ContractID || ContractorName || Task || DueDate"]
+    var i=0
+    var queryStatement: OpaquePointer?
+    if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+        while (sqlite3_step(queryStatement) == SQLITE_ROW) {
+            arr.append(String(cString: sqlite3_column_text(queryStatement,0)) + " || " +
+            String(cString: sqlite3_column_text(queryStatement,1)) + " || " +
+            String(cString: sqlite3_column_text(queryStatement,2))  + " || " +
+            String(cString: sqlite3_column_text(queryStatement,3))  + " || " +
+            String(cString: sqlite3_column_text(queryStatement,4)))
+            i+=1
+        }
+    }
+    debugPrint(arr)
+    sqlite3_finalize(queryStatement)
+    return arr
+}
+
+// Will merge these query functions into one later
+func queryProposalsView(in db:OpaquePointer, in queryStatementString:String) ->  Array<String>{
+    var arr:[String] = ["customername || worklocation || completiondeadline || worksummary || budgetlimit"]
+    var i=0
+    var queryStatement: OpaquePointer?
+    if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+        while (sqlite3_step(queryStatement) == SQLITE_ROW) {
+            arr.append(String(cString: sqlite3_column_text(queryStatement,0)) + " || " +
+            String(cString: sqlite3_column_text(queryStatement,1)) + " || " +
+            String(cString: sqlite3_column_text(queryStatement,2))  + " || " +
+            String(cString: sqlite3_column_text(queryStatement,3))  + " || " +
+            String(cString: sqlite3_column_text(queryStatement,4)))
+            i+=1
+        }
+    }
+    debugPrint(arr)
+    sqlite3_finalize(queryStatement)
+    return arr
+}
+
+
 class TableViewController: UITableViewController {
     var tableViewData = [cellData]()
+    var userEmail:String? = ""
     //var items = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-       // ToDo: Hardcoded string needs to be replaced with data detched from database, each array element is a row, each string the array element is a field in some table, and each line is a row. Each celldata is different set of data from a different query.
-        
-        tableViewData = [cellData(opened: false, title: "Upcoming Deadlines", sectionData:["Amit Varde " + "install power outlet" + " " + "01-29-2022" + " " + "Sunnyvale CA " , "Subodh Kumar" + " " + "install projector" + " " + "01-27-2022" + " " + "Austin TX"]),
-        cellData(opened: false, title: "Todays Tasks", sectionData: ["Kenneth Chang" + " " + "install sink" + " " + "TodaysDate" + " " + "Sunnyvale CA "]),
-        cellData(opened: false, title: "Projects", sectionData: ["Amit Varde  " + " " + "install dishwasher" + " " + "02-05-2022" + " " + "Sunnyvale CA "
-        , "Subodh Kumar" + " " + "install cabinets" + " " + "01-28-2022" + " " + "Austin TX"])]
+        let db = openDatabase()
+        var lead:String = " ";
+        lead = ", '+30 days'";
+        let queryStringDeadline = "select * from taskdeadline where maincontractidentifier in (select contractid from contract where contractorid = (select contractorid from contractor where emailaddr = '" + userEmail! + "')) AND  duedate < DATE('now'" + lead + ");"
+        lead = ", '+1 days'";
+        let queryStringTodayTask = "select * from taskdeadline where maincontractidentifier in (select contractid from contract where contractorid = (select contractorid from contractor where emailaddr = '" + userEmail! + "')) AND  duedate < DATE('now'" + lead + ");"
+        let queryStringProposals = "select * from vw_proposals;"
+        var arrdeadline:[String] = []
+        arrdeadline = queryDeadline(in:db!,in:queryStringDeadline)
+        var arrTodayTask:[String] = []
+        arrTodayTask = queryDeadline(in: db!, in: queryStringTodayTask)
+        var arrProposals:[String] = []
+        arrProposals = queryProposalsView(in: db!, in: queryStringProposals)
+        sqlite3_close_v2(db)
+        tableViewData = [cellData(opened: false, title: "Upcoming Deadlines", sectionData:arrdeadline),
+        cellData(opened: false, title: "Todays Tasks", sectionData: arrTodayTask),
+        cellData(opened: false, title: "Open Proposals", sectionData: arrProposals)]
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

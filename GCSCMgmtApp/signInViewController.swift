@@ -35,15 +35,11 @@ class signInViewController: UIViewController {
        
         //Fix exceptions later TBD
         self.user?.email = emailTxt.text!
-        //Value fetched from database after successful signin
-        self.user?.id = 12345
         
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        //let ptVC = segue.destination as! projectTaskViewController
-        //ptVC.user = self.user
+        let destinationViewController = segue.destination as! TableViewController
+        destinationViewController.userEmail = self.user?.email
     }
-
-
 }
