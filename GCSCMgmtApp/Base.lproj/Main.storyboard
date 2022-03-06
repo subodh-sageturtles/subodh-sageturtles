@@ -153,37 +153,72 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-Sc-wRO" userLabel="ExternlStackView">
-                                            <rect key="frame" x="38.333333333333314" y="122" width="306" height="57"/>
+                                            <rect key="frame" x="52.333333333333343" y="122" width="278" height="57"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="sc_financial" translatesAutoresizingMaskIntoConstraints="NO" id="xSh-PF-ukj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i8h-xE-QTS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="57"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="57" id="IUB-1R-N8T"/>
-                                                        <constraint firstAttribute="width" constant="57" id="vpr-Sd-Kj7"/>
+                                                        <constraint firstAttribute="width" constant="50" id="2or-4M-xK3"/>
                                                     </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sc_insurance" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j3u-02-za8">
-                                                    <rect key="frame" x="83" y="0.0" width="57" height="57"/>
+                                                    <state key="normal" image="sc_financial">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="imageView.ContentMode">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="FinButton:" destination="qb8-GR-kVf" eventType="touchUpInside" id="SgV-ap-4dv"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Ky-RdD" userLabel="ExpButton">
+                                                    <rect key="frame" x="75.999999999999986" y="0.0" width="50" height="57"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="57" id="2v1-pn-Ijg"/>
-                                                        <constraint firstAttribute="width" constant="57" id="gfN-XS-0rC"/>
+                                                        <constraint firstAttribute="width" constant="50" id="YIn-tP-HfR"/>
                                                     </constraints>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sc_training" translatesAutoresizingMaskIntoConstraints="NO" id="p9j-7M-9F3">
-                                                    <rect key="frame" x="166" y="0.0" width="57" height="57"/>
+                                                    <state key="normal" image="sc_mentorship"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="imageView.contentMode">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="ExpButton:" destination="qb8-GR-kVf" eventType="touchUpInside" id="aN1-H7-SXa"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoL-l5-nnP">
+                                                    <rect key="frame" x="152" y="0.0" width="50" height="57"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="57" id="iSd-bY-dYO"/>
-                                                        <constraint firstAttribute="width" constant="57" id="v0u-d2-xIe"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Khl-jQ-hCx"/>
                                                     </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sc_mentorship" translatesAutoresizingMaskIntoConstraints="NO" id="v8D-s7-eb2">
-                                                    <rect key="frame" x="249" y="0.0" width="57" height="57"/>
+                                                    <state key="normal" title="InsButton" image="sc_insurance"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="imageView.ContentMode">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="InsButton:" destination="qb8-GR-kVf" eventType="touchUpInside" id="5J8-p7-jd9"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7s-4B-THh">
+                                                    <rect key="frame" x="228" y="0.0" width="50" height="57"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="57" id="UWg-gY-o8v"/>
-                                                        <constraint firstAttribute="width" constant="57" id="oca-cK-hy7"/>
+                                                        <constraint firstAttribute="width" constant="50" id="AnG-JG-G0a"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <state key="normal" title="TrnButton" image="sc_training-1">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="imageView.ContentMode">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="TrnButton:" destination="qb8-GR-kVf" eventType="touchUpInside" id="X4q-Cp-C8K"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <viewLayoutGuide key="safeArea" id="YCe-5Z-SOK"/>
                                         </stackView>
@@ -237,7 +272,7 @@
         <image name="sc_handyman_human" width="339" height="280"/>
         <image name="sc_insurance" width="206.5" height="203"/>
         <image name="sc_mentorship" width="1013" height="594"/>
-        <image name="sc_training" width="207.5" height="161"/>
+        <image name="sc_training-1" width="207.5" height="161"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

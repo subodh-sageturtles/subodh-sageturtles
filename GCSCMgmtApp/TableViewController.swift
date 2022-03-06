@@ -74,6 +74,7 @@ func queryProposalsView(in db:OpaquePointer, in queryStatementString:String) -> 
 
 
 class TableViewController: UITableViewController {
+    
     var tableViewData = [cellData]()
     var userEmail:String? = ""
     //var items = [String]()
@@ -200,5 +201,32 @@ class TableViewController: UITableViewController {
     */
     
     
-
+    @IBAction func FinButton(_ sender: UIButton) {
+        guard let settingsUrl = URL(string:"http://www.chase.com") else {
+                return
+            }
+            UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+        }
+    
+    
+    @IBAction func InsButton(_ sender: Any) {
+        guard let settingsUrl = URL(string:"http://www.libertymutual.com") else {
+                return
+            }
+            UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func TrnButton(_ sender: Any) {
+        guard let settingsUrl = URL(string:"https://scitexas.edu/trade-school/trade-schools-in-austin/") else {
+                return
+            }
+            UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func ExpButton(_ sender: Any) {
+        guard let settingsUrl = URL(string:"https://www.terracon.com/services/facilities/mechanical-electrical-and-plumbing-mep-consulting/") else {
+                return
+            }
+            UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+    }
 }
