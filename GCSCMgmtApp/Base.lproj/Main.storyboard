@@ -155,7 +155,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="eFq-Sc-wRO" userLabel="ExternlStackView">
                                             <rect key="frame" x="52.333333333333343" y="122" width="278" height="57"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i8h-xE-QTS">
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i8h-xE-QTS" userLabel="FinButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="57"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="2or-4M-xK3"/>
